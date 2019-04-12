@@ -1,18 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header></Header>
+    <div class="container">
+      <div class="row main-page">
+
+         <div class="col-md-12">
+            <h4 class="text-info" id="online_users">Online User : {{onlineuser}}</h4>
+            <hr>
+        </div>
+        <router-view></router-view>
+        
+      </div>
+    </div>
+
+
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import io from 'socket.io-client';
+import Header from './components/Header'
+//import OnlineUser from './components/OnlineUser'
+import Footer from './components/Footer'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    Header,
+    //OnlineUser,
+    Footer
+  },
+  data: function(){
+    return {
+      onlineuser : '',
+      username : '',
+      socket: io("http://localhost:3000"),
+      messages : [],
+      users : []
+    }
+  },
+  beforeMount() {
+    this.socket.on("userCount", (data) => {
+      this.onlineuser = data.userCount;
+    })
+  },
 }
 </script>
 
@@ -21,8 +53,9 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.main-page{
+  margin-top: 40px;
 }
 </style>
