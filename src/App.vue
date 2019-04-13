@@ -21,28 +21,23 @@
 <script>
 import io from 'socket.io-client';
 import Header from './components/Header'
-//import OnlineUser from './components/OnlineUser'
 import Footer from './components/Footer'
 
 export default {
   name: 'app',
   components: {
     Header,
-    //OnlineUser,
     Footer
   },
   data: function(){
     return {
       onlineuser : '',
-      username : '',
       socket: io("http://localhost:3000"),
-      messages : [],
-      users : []
     }
   },
   beforeMount() {
-    this.socket.on("userCount", (data) => {
-      this.onlineuser = data.userCount;
+    this.socket.on("clientsCount", (data) => {
+      this.onlineuser = data.clientsCount;
     })
   },
 }

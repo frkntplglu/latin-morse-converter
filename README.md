@@ -1,29 +1,16 @@
-# client
+# Latin - Morse Converter
 
-## Project setup
-```
-npm install
-```
+This app was built for Kartaca Internship Program
 
-### Compiles and hot-reloads for development
+## Build Setup
 ```
-npm run serve
-```
+# install dependencies
+$ npm install 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# run with hot reload at localhost:3000
+$ npm run dev
 
-### Run your tests
-```
-npm run test
-```
+# build for production
+$ npm run build
 
-### Lints and fixes files
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -8,16 +8,20 @@
             </div>
             <div class="form-group col-md-6">
               <label for="morseAlphabet">Morse Alphabet</label>
-              <textarea class="form-control rounded-5" id="morseAlphabet" v-model="output" rows="10"></textarea>
+              <textarea class="form-control rounded-5" readonly id="morseAlphabet" v-model="output" rows="10"></textarea>
             </div>
-            
+            <div class="col-md-12">
+              You can type anything you want and the app will convert automatically.
+            </div>
           </div>
 
         </div>
 </template>
 
 <script>
-
+  import {Translator} from '../Translator';
+  var converter = new Translator();
+  
   export default {
     data: function() {
       return {
@@ -26,7 +30,7 @@
         alphabet : {
           'a': '.-',
           'b': '-...',
-          'c': '-.-.',
+          'c': '-.-.', 
           'd': '-..',
           'e': '.',
           'f': '..-.',
@@ -82,12 +86,6 @@
         }
       }
     },
-    sockets: {
-        connect: function () {
-          //eslint-disable-next-line
-          console.log('socket connected')
-        },
-    }, 
     methods : {
       turkishToEnglish(str){
         return str.replace('Ğ','g')
@@ -105,11 +103,11 @@
                   .replace('ç','c');
       },
       latinToMorse(latin){
-        let value = this.turkishToEnglish(latin);
+        let value = converter.turkishToEnglish(latin);
         this.output = '';
         for(let i = 0; i < value.length; i++){
-          if(this.alphabet[value.charAt(i)] !== undefined){
-            this.output += ` ${this.alphabet[value.charAt(i).toLowerCase()]}`;
+          if(converter.alphabet[value.charAt(i)] !== undefined){
+            this.output += ` ${converter.alphabet[value.charAt(i).toLowerCase()]}`;
           }
         }
         return this.output.trim(); 

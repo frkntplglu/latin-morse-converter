@@ -7,14 +7,14 @@ io.on('connection', function(socket){
   console.log('an user connected');
   clients.push(socket.id);
   console.log(clients.length);
-  io.sockets.emit('userCount', { userCount: clients.length });
+  io.sockets.emit('clientsCount', { clientsCount: clients.length });
 
   socket.on('disconnect', (socket) => {
     console.log("disconnect a client..");
     const index = clients.indexOf(socket.id);
     clients.splice(index,1);
     console.log(clients.length);
-    io.sockets.emit('userCount', { userCount: clients.length });
+    io.sockets.emit('clientsCount', { clientsCount: clients.length });
   })
 });
 
