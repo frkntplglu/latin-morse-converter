@@ -59,20 +59,19 @@ export class Translator{
     }
   }
 
-  turkishToEnglish(str){
-    return str.replace('Ğ','g')
-              .replace('Ü','u')
-              .replace('Ş','s')
-              .replace('I','i')
-              .replace('İ','i')
-              .replace('Ö','o')
-              .replace('Ç','c')
-              .replace('ğ','g')
-              .replace('ü','u')
-              .replace('ş','s')
-              .replace('ı','i')
-              .replace('ö','o')
-              .replace('ç','c');
+  turkishToEnglish(text){
+    var trMap = {
+      'çÇ':'c',
+      'ğĞ':'g',
+      'şŞ':'s',
+      'üÜ':'u',
+      'ıİ':'i',
+      'öÖ':'o'
+    };
+    for(var key in trMap) {
+        text = text.replace(new RegExp('['+key+']','g'), trMap[key]);
+    }
+    return text;
   }
 
 
