@@ -3,7 +3,7 @@
 This app was built for Kartaca Internship Program
 
 ## Build Setup
-```
+``` bash
 # install dependencies
 $ npm install 
 
